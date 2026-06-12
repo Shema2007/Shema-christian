@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shema Christian — Resume</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #080d1a;
+      --surface: #0f1629;
+      --border: #1e2d4a;
+      --primary: #3b82f6;
+      --primary-light: #60a5fa;
+      --text: #e8edf5;
+      --muted: #8b9ab5;
+      --mono: 'Space Mono', monospace;
+      --sans: 'Inter', sans-serif;
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 48px 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* ─── PRINT ─── */
+    @media print {
+      body { background: #fff; color: #111; padding: 24px; }
+      :root { --text: #111; --muted: #555; --primary: #2563eb; --border: #ccc; --surface: #f8f8f8; }
+      .no-print { display: none !important; }
+      a { color: var(--primary); }
+    }
+
+    /* ─── PRINT BUTTON ─── */
+    .no-print {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      display: flex;
+      gap: 10px;
+    }
+    .btn {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      border: none;
+      transition: opacity .2s;
+    }
+    .btn:hover { opacity: .85; }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+    .btn-ghost:hover { color: var(--text); border-color: var(--primary); }
+
+    /* ─── HEADER ─── */
+    header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 32px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    .name-block h1 {
+      font-size: 42px;
+      font-weight: 700;
+      letter-spacing: -.02em;
+      line-height: 1.1;
+    }
+    .name-block h1 span { color: var(--primary); }
+    .name-block .role {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+    .contact-block {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: flex-end;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .contact-block a { color: var(--primary-light); text-decoration: none; }
+
+    /* ─── TAGLINE ─── */
+    .tagline {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--primary);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      border-left: 2px solid var(--primary);
+      padding-left: 12px;
+      margin-bottom: 40px;
+    }
+
+    /* ─── LAYOUT ─── */
+    .grid { display: grid; grid-template-columns: 1fr 280px; gap: 48px; }
+    @media (max-width: 680px) { .grid { grid-template-columns: 1fr; } }
+
+    /* ─── SECTION ─── */
+    section { margin-bottom: 40px; }
+    .section-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    /* ─── EXPERIENCE ─── */
+    .job { margin-bottom: 28px; }
+    .job-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; }
+    .job-title { font-size: 16px; font-weight: 600; }
+    .job-company { color: var(--primary-light); font-size: 14px; }
+    .job-date { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+    .job ul { margin-top: 10px; padding-left: 18px; }
+    .job li { font-size: 14px; color: var(--muted); margin-bottom: 5px; line-height: 1.5; }
+    .job li::marker { color: var(--primary); }
+
+    /* ─── SKILLS ─── */
+    .skill-group { margin-bottom: 20px; }
+    .skill-group-label { font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 3px 9px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--muted);
+    }
+
+    /* ─── EDUCATION ─── */
+    .edu { margin-bottom: 16px; }
+    .edu-degree { font-size: 15px; font-weight: 600; }
+    .edu-school { font-size: 13px; color: var(--primary-light); }
+    .edu-date { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+
+    /* ─── PROJECTS ─── */
+    .project { margin-bottom: 18px; }
+    .project-name { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+    .project-name a { color: var(--primary-light); text-decoration: none; font-family: var(--mono); font-size: 12px; font-weight: 400; margin-left: 8px; }
+    .project-desc { font-size: 13px; color: var(--muted); }
+
+    /* ─── LANGUAGES & CERTIFICATIONS ─── */
+    .list-item { font-size: 13px; color: var(--muted); padding: 5px 0; border-bottom: 1px solid var(--border); }
+    .list-item:last-child { border-bottom: none; }
+
+    /* ─── SUMMARY ─── */
+    .summary { font-size: 14px; color: var(--muted); line-height: 1.8; }
+    .summary strong { color: var(--text); }
+  </style>
+</head>
+<body>
+
+  <div class="no-print">
+    <button class="btn btn-ghost" onclick="history.back()">Back</button>
+    <button class="btn btn-primary" onclick="window.print()">Save as PDF</button>
+  </div>
+
+  <header>
+    <div class="name-block">
+      <h1>Shema <span>Christian</span></h1>
+      <div class="role">Full-Stack Developer &amp; Systems Architect</div>
+    </div>
+    <div class="contact-block">
+      <span>Available for freelance &amp; contract work</span>
+      <a href="mailto:christianirasubizashema@gmail.com">christianirasubizashema@gmail.com</a>
+      <a href="tel:+250792773683">+250 792 773 683</a>
+      <a href="https://github.com/shemachristian" target="_blank">github.com/shemachristian</a>
+      <a href="https://linkedin.com/in/shemachristian" target="_blank">linkedin.com/in/shemachristian</a>
+    </div>
+  </header>
+
+  <div class="tagline">Code with Purpose. Build for His Glory.</div>
+
+  <div class="grid">
+
+    <!-- LEFT COLUMN -->
+    <div>
+
+      <section>
+        <div class="section-label">Profile</div>
+        <p class="summary">
+          <strong>Full-stack developer and IT systems architect</strong> with 5+ years of experience designing
+          and shipping production-grade web applications. Specialized in building <strong>scalable APIs,
+          responsive frontends, and robust database architectures</strong> across a range of industries.
+          Passionate about clean code, reliable delivery, and technology that serves a greater purpose.
+          Proven track record with 50+ completed projects and a 100% on-time delivery rate.
+        </p>
+      </section>
+
+      <section>
+        <div class="section-label">Experience</div>
+
+        <div class="job">
+          <div class="job-header">
+            <div>
+              <div class="job-title">Freelance Full-Stack Developer</div>
+              <div class="job-company">Self-Employed</div>
+            </div>
+            <div class="job-date">2020 — Present</div>
+          </div>
+          <ul>
+            <li>Designed and developed 50+ web applications across e-commerce, SaaS, and corporate sectors</li>
+            <li>Built REST and GraphQL APIs with Node.js/Express serving thousands of concurrent users</li>
+            <li>Delivered full-stack solutions using React, Next.js, TypeScript, and PostgreSQL</li>
+            <li>Architected multi-tenant SaaS platforms with role-based access control and real-time features</li>
+            <li>Implemented CI/CD pipelines with Docker and GitHub Actions for zero-downtime deployments</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job-header">
+            <div>
+              <div class="job-title">IT Systems Developer</div>
+              <div class="job-company">Contract / Consulting</div>
+            </div>
+            <div class="job-date">2019 — 2020</div>
+          </div>
+          <ul>
+            <li>Developed internal tooling and dashboards for business process automation</li>
+            <li>Designed database schemas and optimized SQL queries for high-volume transactional systems</li>
+            <li>Provided technical consultation on system architecture, security, and scalability strategies</li>
+          </ul>
+        </div>
+
+      </section>
+
+      <section>
+        <div class="section-label">Selected Projects</div>
+
+        <div class="project">
+          <div class="project-name">
+            Kapo Kitchenware E-Commerce
+            <a href="https://kapo-kitchenwarezip2zip-1zipzipejoz-tawny.vercel.app" target="_blank">↗ live site</a>
+          </div>
+          <div class="project-desc">Full-featured online storefront with product catalog, cart, and checkout. Built with React, Next.js, and Tailwind CSS.</div>
+        </div>
+
+        <div class="project">
+          <div class="project-name">SaaS Analytics Dashboard</div>
+          <div class="project-desc">Multi-tenant real-time analytics platform with WebSocket data streams, dynamic charting, and role-based auth.</div>
+        </div>
+
+        <div class="project">
+          <div class="project-name">API Gateway Microservices</div>
+          <div class="project-desc">RESTful microservices architecture on Node.js + Docker handling high-concurrency workloads with GraphQL federation.</div>
+        </div>
+
+        <div class="project">
+          <div class="project-name">Corporate Business Portal</div>
+          <div class="project-desc">SEO-optimized Next.js site with headless Sanity CMS, Framer Motion animations, and global CDN delivery.</div>
+        </div>
+
+      </section>
+
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div>
+
+      <section>
+        <div class="section-label">Technical Skills</div>
+
+        <div class="skill-group">
+          <div class="skill-group-label">Languages</div>
+          <div class="tags">
+            <span class="tag">TypeScript</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Python</span>
+            <span class="tag">SQL</span>
+            <span class="tag">HTML/CSS</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-label">Frontend</div>
+          <div class="tags">
+            <span class="tag">React</span>
+            <span class="tag">Next.js</span>
+            <span class="tag">Tailwind CSS</span>
+            <span class="tag">Framer Motion</span>
+            <span class="tag">Vite</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-label">Backend</div>
+          <div class="tags">
+            <span class="tag">Node.js</span>
+            <span class="tag">Express</span>
+            <span class="tag">GraphQL</span>
+            <span class="tag">REST APIs</span>
+            <span class="tag">WebSockets</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-label">Databases</div>
+          <div class="tags">
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">Redis</span>
+            <span class="tag">Drizzle ORM</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-label">DevOps &amp; Tools</div>
+          <div class="tags">
+            <span class="tag">Docker</span>
+            <span class="tag">Git</span>
+            <span class="tag">Linux</span>
+            <span class="tag">Vercel</span>
+            <span class="tag">CI/CD</span>
+          </div>
+        </div>
+
+      </section>
+
+      <section>
+        <div class="section-label">Education</div>
+        <div class="edu">
+          <div class="edu-degree">Computer Science / Software Engineering</div>
+          <div class="edu-school">University / Technical Institution</div>
+          <div class="edu-date">Graduated 2019</div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-label">Core Strengths</div>
+        <div class="list-item">System Architecture &amp; Design</div>
+        <div class="list-item">Full-Stack Web Development</div>
+        <div class="list-item">API Design &amp; Integration</div>
+        <div class="list-item">Database Design &amp; Optimization</div>
+        <div class="list-item">Agile Project Delivery</div>
+        <div class="list-item">IT Consulting &amp; Support</div>
+      </section>
+
+      <section>
+        <div class="section-label">What Clients Say</div>
+        <p style="font-size:13px; color: var(--muted); font-style:italic; line-height:1.7;">
+          "Shema delivers exactly what was scoped — on time, with clean code and zero drama.
+          He is our go-to developer for any new product."
+        </p>
+      </section>
+
+    </div>
+  </div>
+
+</body>
+</html>

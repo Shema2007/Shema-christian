@@ -1,0 +1,38 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "ENiNmvl1Apy1qgJa0pVa8"
+uri = "file://artifacts/shema-christian/src/assets/images/project-ecommerce.png"
+type = "image"
+title = "E-commerce abstract cover"
+
+[[generated]]
+id = "x7xO6gXnBWnDXtJHTrYnp"
+uri = "file://artifacts/shema-christian/src/assets/images/project-saas.png"
+type = "image"
+title = "SaaS Dashboard abstract cover"
+
+[[generated]]
+id = "GIFsBnIrIOTU7X87Rxexe"
+uri = "file://artifacts/shema-christian/src/assets/images/project-corporate.png"
+type = "image"
+title = "Corporate Website abstract cover"
+
+[[generated]]
+id = "vt4uwVVlHiRFqzWjUWj-_"
+uri = "file://artifacts/shema-christian/src/assets/images/project-mobile.png"
+type = "image"
+title = "Mobile-First Web App abstract cover"
+
+[[generated]]
+id = "FdXoO3PNHM76s1kizJr8-"
+uri = "file://artifacts/shema-christian/src/assets/images/project-api.png"
+type = "image"
+title = "API Gateway abstract cover"
+
+[[generated]]
+id = "ibrUfPBwWs9E34pV8NtNd"
+uri = "file://artifacts/shema-christian/src/assets/images/project-portfolio.png"
+type = "image"
+title = "Portfolio System abstract cover"
